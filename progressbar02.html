@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Exhibit 3</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      
+    <style>
+        #progress {
+            border: 1px solid #00CC99;
+            background-color: #00CC99;
+            width: 1px;
+            height: 40px;
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="progress"></div>
+    <p id="count"></p>
+    <h1>Exhibit 3</h1>
+    <ul>
+        <li><a href="./progressbar00.html">Exhibit 1</a></li>
+        <li><a href="./progressbar01.html">Exhibit 2</a></li>
+        <li><a href="./progressbar02.html">Exhibit 3</a></li>
+    </ul>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        // initialize our two variables
+        var barWidth = 0; // how wide the progress bar should be
+        var interval = 40; // the interval by which it should increment
+        
+        // make sure localStorage is available on this browser
+        if(typeof(Storage) !== "undefined") {
+            
+            // Code for localStorage/sessionStorage.
+            if (localStorage.exhibitCount) {
+                localStorage.exhibitCount = Number(localStorage.exhibitCount) + 1;
+            } else {
+                localStorage.exhibitCount = 1;
+            }
+            
+            // debug info to console
+            console.log(localStorage.exhibitCount);
+            
+            // calculate the width of the bar based on the count of exhibits visited
+            barWidth =  interval * localStorage.exhibitCount; 
+            
+            // use jquery to update the style width property for the progress bar
+            $("#progress").css("width",barWidth + "px");
+            // in words...
+            $("#count").text("exhibits visited: " + localStorage.exhibitCount);
+            
+        } else {
+            // Sorry! No Web Storage support..
+            alert("No support for localStorage. Please upgrade your browser.");
+        }
+    </script>
+  </body>
+</html>
